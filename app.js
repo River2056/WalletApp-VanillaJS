@@ -1,8 +1,8 @@
 const inputBox = document.querySelector(".menu .input input");
 const outputBox = document.querySelector(".menu .input .output");
 const optionBtn = document.querySelector(".menu .option .opt_btn");
+const setBtn = document.querySelector(".menu .set .opt_btn");
 const saveBtn = document.querySelector(".menu .save .opt_btn");
-const spentBtn = document.querySelector(".menu .spent .opt_btn");
 const clearBtn = document.querySelector(".menu .clear .opt_btn");
 const showBtn = document.querySelector(".menu .show .opt_btn");
 const calBtn = document.querySelector(".menu .cal #cal_btn");
@@ -62,19 +62,19 @@ optionBtn.addEventListener('click', function() {
     });
 });
 
-//save button
-saveBtn.addEventListener('click', () => {
+//set button
+setBtn.addEventListener('click', () => {
     let money = inputBox.value;
     local.setItem("myAccount", money);
-    outputBox.innerHTML = `Done Saving!`;
+    outputBox.innerHTML = `Done Setting!`;
     reload();
 });
 
-// spent button
-spentBtn.addEventListener('click', () => {
-    let spent = inputBox.value;
-    let account = local.getItem('myAccount');
-    let newBalance = account - spent;
+// save button
+saveBtn.addEventListener('click', () => {
+    let deposit = parseInt(inputBox.value);
+    let account = parseInt(local.getItem('myAccount'));
+    let newBalance = account + deposit;
     local.setItem('myAccount', newBalance);
     outputBox.innerHTML = `Done Recording!`;
     reload();
